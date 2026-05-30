@@ -1,0 +1,443 @@
+/* ─────────────────────────────────────────────
+   MAGMA — Global Design System
+   Dark mode cinematic brand language
+───────────────────────────────────────────── */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Font Face ─────────────────────────────── */
+/* Place Pragmatica font files in /public/fonts/
+   Fallback: system-ui until fonts are loaded    */
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('/fonts/Pragmatica-Book.woff2') format('woff2'),
+       url('/fonts/Pragmatica-Book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('/fonts/Pragmatica-Medium.woff2') format('woff2'),
+       url('/fonts/Pragmatica-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('/fonts/Pragmatica-Bold.woff2') format('woff2'),
+       url('/fonts/Pragmatica-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pragmatica Extended';
+  src: url('/fonts/Pragmatica-Extended.woff2') format('woff2'),
+       url('/fonts/Pragmatica-Extended.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── CSS Variables ──────────────────────────── */
+:root {
+  /* Brand colors */
+  --magma-black:      #080807;
+  --magma-deep:       #0E0E0C;
+  --magma-mid:        #1A1A18;
+  --magma-grey:       #4A4A46;
+  --magma-amber:      #E8960C;
+  --magma-amber-dim:  #A06808;
+  --magma-red:        #C0281C;
+  --magma-bone:       #E2D8C8;
+  --magma-bone-dim:   #8A8278;
+
+  /* Semantic */
+  --bg:               var(--magma-black);
+  --surface:          var(--magma-deep);
+  --surface-raised:   var(--magma-mid);
+  --stroke:           rgba(226, 216, 200, 0.10);
+  --stroke-bright:    rgba(226, 216, 200, 0.22);
+  --text-primary:     var(--magma-bone);
+  --text-secondary:   var(--magma-bone-dim);
+  --text-accent:      var(--magma-amber);
+  --accent:           var(--magma-amber);
+  --accent-alt:       var(--magma-red);
+
+  /* Layout */
+  --nav-h:            72px;
+  --max-w:            1440px;
+  --gutter:           clamp(24px, 5vw, 80px);
+
+  /* Transitions */
+  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:    200ms;
+  --duration-base:    400ms;
+  --duration-slow:    800ms;
+}
+
+/* ── Base Reset ─────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--magma-black);
+  color: var(--magma-bone);
+  font-family: 'Pragmatica', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Typography Scale ───────────────────────── */
+.t-kicker {
+  font-size: 0.6875rem;           /* 11px */
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+.t-label {
+  font-size: 0.75rem;             /* 12px */
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.t-body-sm {
+  font-size: 0.875rem;            /* 14px */
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.t-body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.t-body-lg {
+  font-size: 1.125rem;            /* 18px */
+  line-height: 1.65;
+}
+
+.t-headline-sm {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.t-headline {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.t-display {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.t-super {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+/* ── Layout Utilities ───────────────────────── */
+.container-magma {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(80px, 12vw, 160px);
+}
+
+/* ── Divider ────────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--stroke);
+}
+
+/* ── Amber accent line ──────────────────────── */
+.accent-line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--magma-amber);
+}
+
+/* ── Buttons ────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--magma-amber);
+  color: var(--magma-black);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--magma-black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out-expo);
+  mix-blend-mode: overlay;
+}
+
+.btn-primary:hover {
+  letter-spacing: 0.22em;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 31px;
+  background: transparent;
+  color: var(--magma-bone);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--stroke-bright);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out-expo);
+}
+
+.btn-ghost:hover {
+  border-color: var(--magma-amber);
+  color: var(--magma-amber);
+}
+
+/* ── Mask reveal animation ──────────────────── */
+@keyframes maskRevealX {
+  from { clip-path: inset(0 100% 0 0); opacity: 1; }
+  to   { clip-path: inset(0 0% 0 0);   opacity: 1; }
+}
+
+@keyframes maskRevealY {
+  from { clip-path: inset(100% 0 0 0); opacity: 1; }
+  to   { clip-path: inset(0% 0 0 0);   opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes slowPan {
+  from { transform: scale(1.06) translateX(-1.5%); }
+  to   { transform: scale(1.06) translateX(1.5%); }
+}
+
+@keyframes pulseAmber {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+.animate-mask-x {
+  animation: maskRevealX 1.2s var(--ease-out-expo) forwards;
+}
+
+.animate-mask-y {
+  animation: maskRevealY 1s var(--ease-out-expo) forwards;
+}
+
+.animate-fade-up {
+  animation: fadeUp 1s var(--ease-out-expo) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-ticker {
+  animation: ticker 22s linear infinite;
+}
+
+.animate-slow-pan {
+  animation: slowPan 28s ease-in-out infinite alternate;
+}
+
+.animate-pulse-amber {
+  animation: pulseAmber 3s ease-in-out infinite;
+}
+
+/* Delay utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Initially hidden for staggered animations */
+.hidden-init {
+  opacity: 0;
+}
+
+/* ── Surface glass ──────────────────────────── */
+.surface-glass {
+  background: rgba(14, 14, 12, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--stroke);
+}
+
+/* ── Vignette overlay ───────────────────────── */
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(8,8,7,0.75) 100%);
+  pointer-events: none;
+}
+
+/* ── Amber glow ─────────────────────────────── */
+.amber-glow {
+  box-shadow: 0 0 60px rgba(232, 150, 12, 0.15),
+              0 0 120px rgba(232, 150, 12, 0.06);
+}
+
+/* ── Stat number ────────────────────────────── */
+.stat-number {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--magma-amber);
+}
+
+/* ── Custom cursor ──────────────────────────── */
+* { cursor: none !important; }
+a, button, [role="button"] { cursor: none !important; }
+
+/* ── Gradient text ──────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--magma-amber) 0%, #E8500C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Ambient blob animation ─────────────────── */
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.97); }
+}
+.ambient-blob {
+  animation: blobFloat 18s ease-in-out infinite;
+}
+
+/* ── Glow button ────────────────────────────── */
+.btn-glow {
+  box-shadow: 0 0 0 rgba(232,150,12,0);
+  transition: box-shadow 300ms ease, letter-spacing 300ms var(--ease-out-expo);
+}
+.btn-glow:hover {
+  box-shadow: 0 0 32px rgba(232,150,12,0.35), 0 0 60px rgba(232,150,12,0.15);
+}
+
+/* ── Logo marquee ───────────────────────────── */
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+  gap: 0;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(226,216,200,0.2);
+  padding: 0 clamp(24px, 4vw, 56px);
+  border-right: 1px solid var(--stroke);
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+.marquee-item:hover { color: var(--magma-amber); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Selection ──────────────────────────────── */
+::selection {
+  background: rgba(232, 150, 12, 0.25);
+  color: var(--magma-bone);
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--magma-black); }
+::-webkit-scrollbar-thumb { background: var(--magma-grey); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--magma-amber); }
