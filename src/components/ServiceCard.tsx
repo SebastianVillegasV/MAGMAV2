@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const EXPO: [number, number, number, number] = EXPO
+const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export default function ServiceCard({
   number,
@@ -34,8 +34,8 @@ export default function ServiceCard({
       }}
       onHoverStart={(e) => {
         const el = e.target as HTMLElement
-        el.style.borderColor = 'rgba(232,150,12,0.3)'
-        el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(232,150,12,0.06)'
+        el.style.borderColor = 'rgba(200,55,45,0.3)'
+        el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(200,55,45,0.08)'
       }}
       onHoverEnd={(e) => {
         const el = e.target as HTMLElement

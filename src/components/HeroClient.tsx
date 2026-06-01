@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import TextScramble from './TextScramble'
 
-const EXPO: [number, number, number, number] = EXPO
+const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export default function HeroClient() {
   const blobRef = useRef<HTMLDivElement>(null)
@@ -15,7 +15,8 @@ export default function HeroClient() {
       if (!blobRef.current) return
       const x = (e.clientX / window.innerWidth) * 100
       const y = (e.clientY / window.innerHeight) * 100
-      blobRef.current.style.background = `radial-gradient(ellipse 80% 60% at ${x}% ${y}%, rgba(192,40,28,0.14) 0%, transparent 60%)`
+      // Coral/red glow follows the cursor — matches POC primary color
+      blobRef.current.style.background = `radial-gradient(ellipse 80% 60% at ${x}% ${y}%, rgba(200,55,45,0.16) 0%, transparent 60%)`
     }
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
@@ -33,29 +34,43 @@ export default function HeroClient() {
         background: 'var(--magma-black)',
       }}
     >
-      {/* Interactive mouse-tracking glow */}
+      {/* Interactive mouse-tracking red glow */}
       <div
         ref={blobRef}
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(192,40,28,0.12) 0%, transparent 60%)',
-          transition: 'background 0.3s ease',
+          background: 'radial-gradient(ellipse 80% 60% at 70% 30%, rgba(200,55,45,0.14) 0%, transparent 60%)',
+          transition: 'background 0.25s ease',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Ambient amber blob */}
+      {/* Teal ambient blob bottom-left — mirrors POC corner glow */}
       <div
         className="ambient-blob"
         style={{
           position: 'absolute',
-          bottom: '-10%',
-          left: '-5%',
-          width: '55%',
+          bottom: '-15%',
+          left: '-8%',
+          width: '50%',
           aspectRatio: '1',
-          background: 'radial-gradient(circle, rgba(232,150,12,0.07) 0%, transparent 65%)',
-          filter: 'blur(60px)',
+          background: 'radial-gradient(circle, rgba(46,143,165,0.09) 0%, transparent 65%)',
+          filter: 'blur(70px)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Amber accent blob — subtle, top center */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '10%',
+          left: '40%',
+          width: '30%',
+          aspectRatio: '1',
+          background: 'radial-gradient(circle, rgba(232,150,12,0.05) 0%, transparent 70%)',
+          filter: 'blur(80px)',
           pointerEvents: 'none',
         }}
       />
@@ -84,7 +99,7 @@ export default function HeroClient() {
         style={{ position: 'absolute', top: 'calc(var(--nav-h) + 32px)', right: 'var(--gutter)', textAlign: 'right' }}
       >
         <p className="t-label">Plataforma B2B</p>
-        <p className="t-label" style={{ color: 'var(--magma-amber)', marginTop: 4 }}>
+        <p className="t-label" style={{ color: 'var(--magma-teal)', marginTop: 4 }}>
           Audiovisual × Tecnología
         </p>
       </motion.div>
@@ -94,7 +109,7 @@ export default function HeroClient() {
         className="container-magma"
         style={{ paddingBottom: 'clamp(60px, 10vw, 120px)', position: 'relative', zIndex: 1 }}
       >
-        {/* Kicker */}
+        {/* Kicker — red dot + scramble text */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -102,8 +117,8 @@ export default function HeroClient() {
           style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 32 }}
         >
           <span
-            className="animate-pulse-amber"
-            style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--magma-amber)', flexShrink: 0 }}
+            className="animate-pulse-red"
+            style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--magma-red)', flexShrink: 0 }}
           />
           <TextScramble
             text="EQUIPOS QUE CIERRAN MÁS"
@@ -138,6 +153,7 @@ export default function HeroClient() {
               transition={{ delay: 0.65, duration: 0.9, ease: EXPO }}
               style={{ display: 'block', overflow: 'hidden' }}
             >
+              {/* gradient-text: red → amber */}
               <span className="gradient-text">se aprende.</span>
             </motion.span>
           </motion.h1>
@@ -168,7 +184,7 @@ export default function HeroClient() {
           </div>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Stats bar — red gradient numbers */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -197,7 +213,7 @@ export default function HeroClient() {
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
                   marginBottom: 8,
-                  background: 'linear-gradient(135deg, var(--magma-amber) 0%, #E8500C 100%)',
+                  background: 'linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',

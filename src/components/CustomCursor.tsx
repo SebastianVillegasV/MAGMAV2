@@ -39,11 +39,11 @@ export default function CustomCursor() {
 
     const onLinkEnter = () => {
       ring.style.transform += ' scale(2.2)'
-      ring.style.borderColor = 'var(--magma-amber)'
+      ring.style.borderColor = 'var(--magma-red)'
       dot.style.opacity = '0'
     }
     const onLinkLeave = () => {
-      ring.style.borderColor = 'rgba(232,150,12,0.5)'
+      ring.style.borderColor = 'rgba(200,55,45,0.5)'
       dot.style.opacity = '1'
     }
 
@@ -82,7 +82,7 @@ export default function CustomCursor() {
           width: 6,
           height: 6,
           borderRadius: '50%',
-          background: 'var(--magma-amber)',
+          background: 'var(--magma-red)',
           pointerEvents: 'none',
           zIndex: 9999,
           opacity: 0,
@@ -99,7 +99,7 @@ export default function CustomCursor() {
           width: 32,
           height: 32,
           borderRadius: '50%',
-          border: '1px solid rgba(232,150,12,0.5)',
+          border: '1px solid rgba(200,55,45,0.5)',
           pointerEvents: 'none',
           zIndex: 9998,
           opacity: 0,

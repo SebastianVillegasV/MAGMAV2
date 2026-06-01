@@ -80,7 +80,7 @@ export default function AnimatedStats({ stats }: {
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
                   marginBottom: 12,
-                  background: 'linear-gradient(135deg, var(--magma-amber) 0%, #E8500C 100%)',
+                  background: 'linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',

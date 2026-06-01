@@ -45,18 +45,28 @@
 
 /* ── CSS Variables ──────────────────────────── */
 :root {
-  /* Brand colors */
+  /* Brand colors — aligned with POC palette */
   --magma-black:      #080807;
   --magma-deep:       #0E0E0C;
   --magma-mid:        #1A1A18;
   --magma-grey:       #4A4A46;
+
+  /* PRIMARY: Warm crimson — dominant accent (headings, CTAs, kickers) */
+  --magma-red:        #C8372D;
+  --magma-red-bright: #E84035;
+
+  /* SECONDARY: Amber — brand name moments & secondary highlights */
   --magma-amber:      #E8960C;
   --magma-amber-dim:  #A06808;
-  --magma-red:        #C0281C;
+
+  /* TERTIARY: Teal — data, technical, progress (from POC charts) */
+  --magma-teal:       #2E8FA5;
+  --magma-teal-dim:   rgba(46,143,165,0.15);
+
   --magma-bone:       #E2D8C8;
   --magma-bone-dim:   #8A8278;
 
-  /* Semantic */
+  /* Semantic — red is now the primary accent */
   --bg:               var(--magma-black);
   --surface:          var(--magma-deep);
   --surface-raised:   var(--magma-mid);
@@ -64,9 +74,9 @@
   --stroke-bright:    rgba(226, 216, 200, 0.22);
   --text-primary:     var(--magma-bone);
   --text-secondary:   var(--magma-bone-dim);
-  --text-accent:      var(--magma-amber);
-  --accent:           var(--magma-amber);
-  --accent-alt:       var(--magma-red);
+  --text-accent:      var(--magma-red);
+  --accent:           var(--magma-red);
+  --accent-alt:       var(--magma-amber);
 
   /* Layout */
   --nav-h:            72px;
@@ -200,8 +210,8 @@ body {
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
-  background: var(--magma-amber);
-  color: var(--magma-black);
+  background: var(--magma-red);
+  color: var(--magma-bone);
   font-family: inherit;
   font-size: 0.75rem;
   font-weight: 700;
@@ -227,6 +237,7 @@ body {
 }
 
 .btn-primary:hover {
+  background: var(--magma-red-bright);
   letter-spacing: 0.22em;
 }
 
@@ -249,8 +260,8 @@ body {
 }
 
 .btn-ghost:hover {
-  border-color: var(--magma-amber);
-  color: var(--magma-amber);
+  border-color: var(--magma-red);
+  color: var(--magma-red);
 }
 
 /* ── Mask reveal animation ──────────────────── */
@@ -322,6 +333,10 @@ body {
   animation: pulseAmber 3s ease-in-out infinite;
 }
 
+.animate-pulse-red {
+  animation: pulseAmber 3s ease-in-out infinite;
+}
+
 /* Delay utilities */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
@@ -372,8 +387,15 @@ body {
 * { cursor: none !important; }
 a, button, [role="button"] { cursor: none !important; }
 
-/* ── Gradient text ──────────────────────────── */
+/* ── Gradient text — red primary, amber secondary ── */
 .gradient-text {
+  background: linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Amber-only variant for brand name moments */
+.gradient-text-amber {
   background: linear-gradient(135deg, var(--magma-amber) 0%, #E8500C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -390,13 +412,13 @@ a, button, [role="button"] { cursor: none !important; }
   animation: blobFloat 18s ease-in-out infinite;
 }
 
-/* ── Glow button ────────────────────────────── */
+/* ── Glow button — red glow ─────────────────── */
 .btn-glow {
-  box-shadow: 0 0 0 rgba(232,150,12,0);
+  box-shadow: 0 0 0 rgba(200,55,45,0);
   transition: box-shadow 300ms ease, letter-spacing 300ms var(--ease-out-expo);
 }
 .btn-glow:hover {
-  box-shadow: 0 0 32px rgba(232,150,12,0.35), 0 0 60px rgba(232,150,12,0.15);
+  box-shadow: 0 0 32px rgba(200,55,45,0.4), 0 0 60px rgba(200,55,45,0.18);
 }
 
 /* ── Logo marquee ───────────────────────────── */
@@ -424,7 +446,7 @@ a, button, [role="button"] { cursor: none !important; }
   white-space: nowrap;
   transition: color 200ms ease;
 }
-.marquee-item:hover { color: var(--magma-amber); }
+.marquee-item:hover { color: var(--magma-red); }
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
