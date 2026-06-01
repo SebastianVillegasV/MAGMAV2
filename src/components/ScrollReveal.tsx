@@ -1,19 +1,21 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { ReactNode } from 'react'
 
-const container = {
+const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as [number, number, number, number]
+
+const container: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.09 } },
 }
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.65, ease: EASE_OUT_EXPO },
   },
 }
 
@@ -50,7 +52,7 @@ export function RevealText({ children, className }: { children: ReactNode; class
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
     >
       {children}
     </motion.div>
