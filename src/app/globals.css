@@ -43,35 +43,31 @@
   font-display: swap;
 }
 
-/* ── CSS Variables ──────────────────────────── */
+/* ── CSS Variables — Exact values from MAGMA Brandbook 2026 ── */
 :root {
-  /* Brand colors — aligned with POC palette */
-  --magma-black:      #080807;
-  --magma-deep:       #0E0E0C;
-  --magma-mid:        #1A1A18;
-  --magma-grey:       #4A4A46;
+  /* ── Official brand palette ── */
+  --magma-red:        #CA1111;   /* Brandbook primary red */
+  --magma-red-bright: #E01515;   /* +15% lightness for hover */
+  --magma-amber:      #CE8D25;   /* Brandbook gold/amber */
+  --magma-amber-dim:  #9A6A1A;
+  --magma-teal:       #2A7282;   /* Brandbook teal */
+  --magma-teal-dim:   rgba(42,114,130,0.15);
+  --magma-dark:       #2A2820;   /* Brandbook dark (warm near-black) */
+  --magma-bone:       #E2DEC0;   /* Brandbook bone/cream — exact */
+  --magma-bone-dim:   #9A9680;
 
-  /* PRIMARY: Warm crimson — dominant accent (headings, CTAs, kickers) */
-  --magma-red:        #C8372D;
-  --magma-red-bright: #E84035;
+  /* ── Dark surface scale (derived from --magma-dark) ── */
+  --magma-black:      #16150F;   /* slightly deeper than dark */
+  --magma-deep:       #1E1D16;
+  --magma-mid:        #2A2820;   /* = brand dark */
+  --magma-grey:       #4A4842;
 
-  /* SECONDARY: Amber — brand name moments & secondary highlights */
-  --magma-amber:      #E8960C;
-  --magma-amber-dim:  #A06808;
-
-  /* TERTIARY: Teal — data, technical, progress (from POC charts) */
-  --magma-teal:       #2E8FA5;
-  --magma-teal-dim:   rgba(46,143,165,0.15);
-
-  --magma-bone:       #E2D8C8;
-  --magma-bone-dim:   #8A8278;
-
-  /* Semantic — red is now the primary accent */
+  /* ── Semantic ── */
   --bg:               var(--magma-black);
   --surface:          var(--magma-deep);
   --surface-raised:   var(--magma-mid);
-  --stroke:           rgba(226, 216, 200, 0.10);
-  --stroke-bright:    rgba(226, 216, 200, 0.22);
+  --stroke:           rgba(226,222,192,0.10);
+  --stroke-bright:    rgba(226,222,192,0.20);
   --text-primary:     var(--magma-bone);
   --text-secondary:   var(--magma-bone-dim);
   --text-accent:      var(--magma-red);
@@ -387,19 +383,21 @@ body {
 * { cursor: none !important; }
 a, button, [role="button"] { cursor: none !important; }
 
-/* ── Gradient text — red primary, amber secondary ── */
+/* ── Gradient text — clean, not oversaturated ── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%);
+  /* Red → amber: reads left to right, natural brand progression */
+  background: linear-gradient(120deg, var(--magma-red) 30%, var(--magma-amber) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-/* Amber-only variant for brand name moments */
-.gradient-text-amber {
-  background: linear-gradient(135deg, var(--magma-amber) 0%, #E8500C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Solid red variant — for single-color accent moments */
+.text-accent {
+  color: var(--magma-red);
+}
+/* Teal variant — for technical/data labels */
+.text-teal {
+  color: var(--magma-teal);
 }
 
 /* ── Ambient blob animation ─────────────────── */
@@ -409,16 +407,16 @@ a, button, [role="button"] { cursor: none !important; }
   66%       { transform: translate(-20px, 15px) scale(0.97); }
 }
 .ambient-blob {
-  animation: blobFloat 18s ease-in-out infinite;
+  animation: blobFloat 24s ease-in-out infinite;
+  opacity: 0.7;   /* slightly more restrained */
 }
 
-/* ── Glow button — red glow ─────────────────── */
+/* ── Glow button — subtle, not overpowering ── */
 .btn-glow {
-  box-shadow: 0 0 0 rgba(200,55,45,0);
-  transition: box-shadow 300ms ease, letter-spacing 300ms var(--ease-out-expo);
+  transition: box-shadow 300ms ease, letter-spacing 300ms var(--ease-out-expo), background 200ms ease;
 }
 .btn-glow:hover {
-  box-shadow: 0 0 32px rgba(200,55,45,0.4), 0 0 60px rgba(200,55,45,0.18);
+  box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
 /* ── Logo marquee ───────────────────────────── */

@@ -16,7 +16,7 @@ export default function HeroClient() {
       const x = (e.clientX / window.innerWidth) * 100
       const y = (e.clientY / window.innerHeight) * 100
       // Coral/red glow follows the cursor — matches POC primary color
-      blobRef.current.style.background = `radial-gradient(ellipse 80% 60% at ${x}% ${y}%, rgba(200,55,45,0.16) 0%, transparent 60%)`
+      blobRef.current.style.background = `radial-gradient(ellipse 70% 55% at ${x}% ${y}%, rgba(202,17,17,0.10) 0%, transparent 65%)`
     }
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
@@ -40,7 +40,7 @@ export default function HeroClient() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 70% 30%, rgba(200,55,45,0.14) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 70% 55% at 70% 30%, rgba(202,17,17,0.09) 0%, transparent 65%)',
           transition: 'background 0.25s ease',
           pointerEvents: 'none',
         }}
@@ -55,8 +55,8 @@ export default function HeroClient() {
           left: '-8%',
           width: '50%',
           aspectRatio: '1',
-          background: 'radial-gradient(circle, rgba(46,143,165,0.09) 0%, transparent 65%)',
-          filter: 'blur(70px)',
+          background: 'radial-gradient(circle, rgba(42,114,130,0.08) 0%, transparent 65%)',
+          filter: 'blur(80px)',
           pointerEvents: 'none',
         }}
       />
