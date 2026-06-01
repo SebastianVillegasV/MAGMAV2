@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 
+const EXPO: [number, number, number, number] = EXPO
+
 export default function ServiceCard({
   number,
   title,
@@ -18,7 +20,7 @@ export default function ServiceCard({
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.7, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, delay: delay / 1000, ease: EXPO }}
       whileHover={{ y: -6 }}
       style={{
         background: 'rgba(255,255,255,0.03)',
@@ -82,7 +84,7 @@ export default function ServiceCard({
       <motion.div
         initial={{ width: 0 }}
         whileHover={{ width: '100%' }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, ease: EXPO }}
         style={{
           position: 'absolute',
           bottom: 0,

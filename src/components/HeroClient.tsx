@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import TextScramble from './TextScramble'
 
+const EXPO: [number, number, number, number] = EXPO
+
 export default function HeroClient() {
   const blobRef = useRef<HTMLDivElement>(null)
 
@@ -96,7 +98,7 @@ export default function HeroClient() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.3, duration: 0.7, ease: EXPO }}
           style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 32 }}
         >
           <span
@@ -125,7 +127,7 @@ export default function HeroClient() {
             <motion.span
               initial={{ y: '110%' }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.5, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.5, duration: 0.9, ease: EXPO }}
               style={{ display: 'block', overflow: 'hidden' }}
             >
               Vender mejor
@@ -133,7 +135,7 @@ export default function HeroClient() {
             <motion.span
               initial={{ y: '110%' }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.65, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.65, duration: 0.9, ease: EXPO }}
               style={{ display: 'block', overflow: 'hidden' }}
             >
               <span className="gradient-text">se aprende.</span>
@@ -145,7 +147,7 @@ export default function HeroClient() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.95, duration: 0.8, ease: EXPO }}
           style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'flex-end', gap: 40, marginTop: 'clamp(32px, 5vw, 56px)' }}
         >
           <p style={{ maxWidth: '44ch', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', lineHeight: 1.6, color: 'var(--magma-bone-dim)' }}>
