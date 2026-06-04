@@ -427,6 +427,16 @@ a, button, [role="button"] { cursor: none !important; }
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Topographic drift (very slow, subtle) ──── */
+@keyframes topoDrift {
+  0%, 100% { transform: translate(0, 0) scale(1.02); }
+  50%      { transform: translate(-1.2%, 0.8%) scale(1.05); }
+}
+.topo-drift {
+  animation: topoDrift 40s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* ── Video play button hover ────────────────── */
 button:hover .video-play-btn {
   transform: scale(1.08);

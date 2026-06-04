@@ -75,18 +75,19 @@ export default function HeroClient() {
         }}
       />
 
-      {/* Grid overlay */}
+      {/* Topographic contour lines — evokes "magma" / cartographic relief */}
       <div
+        className="topo-drift"
         style={{
           position: 'absolute',
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(var(--stroke) 1px, transparent 1px),
-            linear-gradient(90deg, var(--stroke) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
-          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
+          inset: '-4%',
+          backgroundImage: 'url(/topographic.svg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center right',
+          color: 'var(--magma-dark)',
+          opacity: 0.15,
+          maskImage: 'radial-gradient(ellipse 95% 85% at 72% 55%, black 25%, transparent 88%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 95% 85% at 72% 55%, black 25%, transparent 88%)',
           pointerEvents: 'none',
         }}
       />
