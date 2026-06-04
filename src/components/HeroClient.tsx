@@ -184,50 +184,6 @@ export default function HeroClient() {
             </Link>
           </div>
         </motion.div>
-
-        {/* Stats bar — red gradient numbers */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
-          style={{ display: 'flex', gap: 0, marginTop: 'clamp(48px, 8vw, 80px)', borderTop: '1px solid var(--stroke)', paddingTop: 'clamp(24px, 4vw, 40px)' }}
-        >
-          {[
-            { value: '4×', label: 'Más rápido' },
-            { value: '95%', label: 'Retención' },
-            { value: '1000+', label: 'Potenciados' },
-          ].map((stat, i) => (
-            <div
-              key={i}
-              style={{
-                flex: 1,
-                paddingRight: 32,
-                borderRight: i < 2 ? '1px solid var(--stroke)' : 'none',
-                paddingLeft: i > 0 ? 32 : 0,
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono), ui-monospace, monospace',
-                  fontSize: 'clamp(1.75rem, 3.5vw, 3rem)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  marginBottom: 8,
-                  background: 'linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                {stat.value}
-              </p>
-              <p className="t-label" style={{ color: 'var(--magma-bone-dim)', textTransform: 'none', letterSpacing: '0', fontSize: '0.75rem', lineHeight: 1.4 }}>
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Bottom gradient fade */}
