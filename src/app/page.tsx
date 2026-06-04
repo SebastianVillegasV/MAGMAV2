@@ -5,6 +5,7 @@ import AnimatedStats from '@/components/AnimatedCounter'
 import { RevealContainer, RevealItem, RevealText } from '@/components/ScrollReveal'
 import TextScramble from '@/components/TextScramble'
 import HeroClient from '@/components/HeroClient'
+import VideoShowcase from '@/components/VideoShowcase'
 
 export const metadata: Metadata = {
   title: 'Magma — Equipos comerciales más capaces',
@@ -113,6 +114,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── VIDEO SHOWCASE — Magma en acción ── */}
+      <VideoShowcase />
 
       {/* ── SERVICES PREVIEW ────────────────── */}
       <section className="section" style={{ background: 'var(--magma-black)' }}>

@@ -427,6 +427,12 @@ a, button, [role="button"] { cursor: none !important; }
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Video play button hover ────────────────── */
+button:hover .video-play-btn {
+  transform: scale(1.08);
+  box-shadow: 0 10px 50px rgba(202,17,17,0.6);
+}
+
 /* ── Logo marquee ───────────────────────────── */
 .marquee-wrapper {
   overflow: hidden;
