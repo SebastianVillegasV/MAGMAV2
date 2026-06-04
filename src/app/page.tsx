@@ -31,10 +31,10 @@ const services = [
 ]
 
 const stats = [
-  { value: 3, suffix: '×', label: 'Más rápido que capacitación tradicional' },
-  { value: 87, suffix: '%', label: 'Retención de contenido aplicable' },
-  { value: 40, suffix: '+', label: 'Equipos comerciales activados' },
-  { value: 94, suffix: '%', label: 'Satisfacción de clientes' },
+  { value: 4, suffix: '×', label: 'Más rápido de digerir' },
+  { value: 95, suffix: '%', label: 'Retención del contenido' },
+  { value: 1000, suffix: '+', label: 'Comerciales potenciados' },
+  { value: 96, suffix: '%', label: 'Comerciales satisfechos' },
 ]
 
 const logos = [

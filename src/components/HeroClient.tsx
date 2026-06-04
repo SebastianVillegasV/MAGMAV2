@@ -101,7 +101,7 @@ export default function HeroClient() {
       >
         <p className="t-label">Plataforma B2B</p>
         <p className="t-label" style={{ color: 'var(--magma-teal)', marginTop: 4 }}>
-          Audiovisual × Tecnología
+          Solución de formación
         </p>
       </motion.div>
 
@@ -122,7 +122,7 @@ export default function HeroClient() {
             style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--magma-red)', flexShrink: 0 }}
           />
           <TextScramble
-            text="EQUIPOS QUE CIERRAN MÁS"
+            text="EQUIPOS MÁS CAPACES"
             className="t-kicker"
             trigger="mount"
           />
@@ -167,10 +167,10 @@ export default function HeroClient() {
           transition={{ delay: 0.95, duration: 0.8, ease: EXPO }}
           style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'flex-end', gap: 40, marginTop: 'clamp(32px, 5vw, 56px)' }}
         >
-          <p style={{ maxWidth: '44ch', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', lineHeight: 1.6, color: 'var(--magma-bone-dim)' }}>
-            Magma combina producción audiovisual y tecnología educativa
-            para transformar cómo los equipos comerciales aprenden,
-            practican y aplican.
+          <p style={{ maxWidth: '46ch', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', lineHeight: 1.6, color: 'var(--magma-bone-dim)' }}>
+            Magma une el poder audiovisual y la precisión de la tecnología
+            educativa para transformar cómo los equipos comerciales aprenden,
+            practican y aplican el conocimiento en escenarios reales.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
             <Link href="/contacto" className="btn-primary btn-glow">
@@ -193,9 +193,9 @@ export default function HeroClient() {
           style={{ display: 'flex', gap: 0, marginTop: 'clamp(48px, 8vw, 80px)', borderTop: '1px solid var(--stroke)', paddingTop: 'clamp(24px, 4vw, 40px)' }}
         >
           {[
-            { value: '3×', label: 'Más rápido' },
-            { value: '87%', label: 'Retención' },
-            { value: '40+', label: 'Equipos' },
+            { value: '4×', label: 'Más rápido' },
+            { value: '95%', label: 'Retención' },
+            { value: '1000+', label: 'Potenciados' },
           ].map((stat, i) => (
             <div
               key={i}
