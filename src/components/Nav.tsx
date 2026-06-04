@@ -49,31 +49,31 @@ export default function Nav() {
             : '1px solid transparent',
         }}
       >
-        {/* Logo */}
+        {/* Logo — imagotipo + wordmark (MAGMA Brandbook) */}
         <Link
           href="/"
+          aria-label="Magma — inicio"
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 12,
+            gap: 11,
             textDecoration: 'none',
             flexShrink: 0,
           }}
         >
-          <MagmaLogo />
-          <span
-            style={{
-              fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              letterSpacing: '0.3em',
-              textTransform: 'uppercase',
-              color: 'var(--magma-bone)',
-              paddingTop: 1,
-            }}
-          >
-            Magma
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo/imagotipo.svg"
+            alt=""
+            aria-hidden="true"
+            style={{ height: 30, width: 'auto', display: 'block' }}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo/wordmark.svg"
+            alt="Magma"
+            style={{ height: 15, width: 'auto', display: 'block' }}
+          />
         </Link>
 
         {/* Spacer */}
@@ -219,28 +219,6 @@ export default function Nav() {
         }
       `}</style>
     </>
-  )
-}
-
-function MagmaLogo() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Stylized M / lava flow form */}
-      <rect width="28" height="28" fill="none" />
-      <path
-        d="M4 22 L4 8 L10 16 L14 10 L18 16 L24 8 L24 22"
-        stroke="var(--magma-amber)"
-        strokeWidth="2"
-        strokeLinecap="square"
-        strokeLinejoin="miter"
-        fill="none"
-      />
-      <line
-        x1="4" y1="22" x2="24" y2="22"
-        stroke="var(--magma-red)"
-        strokeWidth="2"
-      />
-    </svg>
   )
 }
 

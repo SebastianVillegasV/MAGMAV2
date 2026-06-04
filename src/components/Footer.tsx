@@ -26,19 +26,12 @@ export default function Footer() {
         >
           {/* Brand */}
           <div>
-            <div
-              style={{
-                fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
-                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.03em',
-                color: 'var(--magma-bone)',
-                lineHeight: 1,
-                marginBottom: 20,
-              }}
-            >
-              Magma
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo/wordmark.svg"
+              alt="Magma"
+              style={{ height: 'clamp(28px, 5vw, 44px)', width: 'auto', display: 'block', marginBottom: 20 }}
+            />
             <p
               style={{
                 maxWidth: 360,
