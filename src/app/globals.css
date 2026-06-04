@@ -427,10 +427,12 @@ a, button, [role="button"] { cursor: none !important; }
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
-/* ── Topographic: reveal on load + slow drift ── */
+/* ── Topographic: reveal on load + slow drift ──
+   The reveal ENDS at the exact transform where the drift STARTS
+   (translate(0,0) scale(1.02)) so the hand-off is seamless. */
 @keyframes topoReveal {
-  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
-  100% { opacity: 0.15; clip-path: inset(0 0 0 0); }
+  0%   { opacity: 0;    clip-path: inset(0 100% 0 0); transform: translate(0, 0) scale(1.00); }
+  100% { opacity: 0.15; clip-path: inset(0 0 0 0);    transform: translate(0, 0) scale(1.02); }
 }
 @keyframes topoDrift {
   0%, 100% { transform: translate(0, 0) scale(1.02); }
