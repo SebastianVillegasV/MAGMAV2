@@ -91,7 +91,7 @@ export default function CasosPage() {
             top: '30%',
             width: '50%',
             height: '70%',
-            background: 'radial-gradient(ellipse at 20% 60%, rgba(232,150,12,0.07) 0%, transparent 55%)',
+            background: 'radial-gradient(ellipse at 20% 60%, rgba(206,141,37,0.09) 0%, transparent 55%)',
             pointerEvents: 'none',
           }}
         />

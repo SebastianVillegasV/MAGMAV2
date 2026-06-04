@@ -43,7 +43,12 @@
   font-display: swap;
 }
 
-/* ── CSS Variables — Exact values from MAGMA Brandbook 2026 ── */
+/* ── CSS Variables — Exact values from MAGMA Brandbook 2026 ──
+   LIGHT THEME: background is the brandbook bone/cream (#E2DEC0).
+   The surface-scale variable NAMES (--magma-black/deep/mid) are kept
+   for component compatibility but now hold LIGHT cream tones; the text
+   variable NAMES (--magma-bone/bone-dim) now hold DARK ink tones.
+─────────────────────────────────────────────────────────────────── */
 :root {
   /* ── Official brand palette ── */
   --magma-red:        #CA1111;   /* Brandbook primary red */
@@ -53,21 +58,25 @@
   --magma-teal:       #2A7282;   /* Brandbook teal */
   --magma-teal-dim:   rgba(42,114,130,0.15);
   --magma-dark:       #2A2820;   /* Brandbook dark (warm near-black) */
-  --magma-bone:       #E2DEC0;   /* Brandbook bone/cream — exact */
-  --magma-bone-dim:   #9A9680;
+  --magma-cream:      #E2DEC0;   /* Brandbook bone/cream — exact */
 
-  /* ── Dark surface scale (derived from --magma-dark) ── */
-  --magma-black:      #16150F;   /* slightly deeper than dark */
-  --magma-deep:       #1E1D16;
-  --magma-mid:        #2A2820;   /* = brand dark */
-  --magma-grey:       #4A4842;
+  /* ── Light surface scale (warm cream tones) ── */
+  --magma-black:      #E2DEC0;   /* PRIMARY BACKGROUND = brandbook bone */
+  --magma-deep:       #ECEAD8;   /* lighter — raised cards / alt sections */
+  --magma-mid:        #D6D1B2;   /* slightly deeper — alternating bands */
+  --magma-grey:       #A8A488;
+
+  /* ── Ink (dark text on cream) ── */
+  --magma-bone:       #2A2820;   /* PRIMARY TEXT = brandbook dark */
+  --magma-bone-dim:   #6B6857;   /* secondary text — warm grey */
+  --magma-ink-inverse:#F2EFDC;   /* light ink, for text ON red/dark surfaces */
 
   /* ── Semantic ── */
   --bg:               var(--magma-black);
   --surface:          var(--magma-deep);
   --surface-raised:   var(--magma-mid);
-  --stroke:           rgba(226,222,192,0.10);
-  --stroke-bright:    rgba(226,222,192,0.20);
+  --stroke:           rgba(42,40,32,0.12);
+  --stroke-bright:    rgba(42,40,32,0.24);
   --text-primary:     var(--magma-bone);
   --text-secondary:   var(--magma-bone-dim);
   --text-accent:      var(--magma-red);
@@ -95,7 +104,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -207,7 +216,7 @@ body {
   gap: 10px;
   padding: 14px 32px;
   background: var(--magma-red);
-  color: var(--magma-bone);
+  color: var(--magma-ink-inverse);
   font-family: inherit;
   font-size: 0.75rem;
   font-weight: 700;
@@ -225,11 +234,10 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--magma-black);
+  background: rgba(0,0,0,0.16);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--duration-base) var(--ease-out-expo);
-  mix-blend-mode: overlay;
 }
 
 .btn-primary:hover {
@@ -347,9 +355,9 @@ body {
   opacity: 0;
 }
 
-/* ── Surface glass ──────────────────────────── */
+/* ── Surface glass — light card on cream ────── */
 .surface-glass {
-  background: rgba(14, 14, 12, 0.7);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--stroke);
@@ -360,14 +368,14 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(8,8,7,0.75) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(42,40,32,0.20) 100%);
   pointer-events: none;
 }
 
 /* ── Amber glow ─────────────────────────────── */
 .amber-glow {
-  box-shadow: 0 0 60px rgba(232, 150, 12, 0.15),
-              0 0 120px rgba(232, 150, 12, 0.06);
+  box-shadow: 0 0 60px rgba(206, 141, 37, 0.18),
+              0 0 120px rgba(206, 141, 37, 0.08);
 }
 
 /* ── Stat number ────────────────────────────── */
@@ -438,7 +446,7 @@ a, button, [role="button"] { cursor: none !important; }
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(226,216,200,0.2);
+  color: rgba(42,40,32,0.30);
   padding: 0 clamp(24px, 4vw, 56px);
   border-right: 1px solid var(--stroke);
   white-space: nowrap;
@@ -452,12 +460,12 @@ a, button, [role="button"] { cursor: none !important; }
 
 /* ── Selection ──────────────────────────────── */
 ::selection {
-  background: rgba(232, 150, 12, 0.25);
-  color: var(--magma-bone);
+  background: rgba(206, 141, 37, 0.30);
+  color: var(--magma-dark);
 }
 
 /* ── Scrollbar ──────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--magma-black); }
 ::-webkit-scrollbar-thumb { background: var(--magma-grey); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--magma-amber); }
+::-webkit-scrollbar-thumb:hover { background: var(--magma-red); }

@@ -76,7 +76,7 @@ export default function ContactoPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse 70% 80% at 80% 50%, rgba(192,40,28,0.08) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse 70% 80% at 80% 50%, rgba(202,17,17,0.07) 0%, transparent 60%)',
             pointerEvents: 'none',
           }}
         />
@@ -352,9 +352,9 @@ export default function ContactoPage() {
                           onClick={() => setFormData((p) => ({ ...p, reason: r }))}
                           style={{
                             padding: '8px 16px',
-                            border: `1px solid ${formData.reason === r ? 'var(--magma-amber)' : 'var(--stroke-bright)'}`,
-                            background: formData.reason === r ? 'rgba(232,150,12,0.08)' : 'transparent',
-                            color: formData.reason === r ? 'var(--magma-amber)' : 'var(--magma-bone-dim)',
+                            border: `1px solid ${formData.reason === r ? 'var(--magma-red)' : 'var(--stroke-bright)'}`,
+                            background: formData.reason === r ? 'rgba(202,17,17,0.08)' : 'transparent',
+                            color: formData.reason === r ? 'var(--magma-red)' : 'var(--magma-bone-dim)',
                             fontFamily: 'Pragmatica, Helvetica Neue, sans-serif',
                             fontSize: '0.75rem',
                             letterSpacing: '0.12em',

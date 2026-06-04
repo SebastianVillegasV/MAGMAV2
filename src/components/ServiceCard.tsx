@@ -23,24 +23,26 @@ export default function ServiceCard({
       transition={{ duration: 0.7, delay: delay / 1000, ease: EXPO }}
       whileHover={{ y: -6 }}
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        background: 'rgba(255,255,255,0.6)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
         padding: 'clamp(28px, 4vw, 48px)',
-        border: '1px solid rgba(226,216,200,0.08)',
+        border: '1px solid rgba(42,40,32,0.08)',
+        borderRadius: 16,
         position: 'relative',
         cursor: 'default',
+        boxShadow: '0 4px 20px rgba(42,40,32,0.05)',
         transition: 'border-color 300ms ease, box-shadow 300ms ease',
       }}
       onHoverStart={(e) => {
         const el = e.target as HTMLElement
-        el.style.borderColor = 'rgba(200,55,45,0.3)'
-        el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(200,55,45,0.08)'
+        el.style.borderColor = 'rgba(202,17,17,0.35)'
+        el.style.boxShadow = '0 20px 50px rgba(42,40,32,0.14), 0 0 0 1px rgba(202,17,17,0.10)'
       }}
       onHoverEnd={(e) => {
         const el = e.target as HTMLElement
-        el.style.borderColor = 'rgba(226,216,200,0.08)'
-        el.style.boxShadow = 'none'
+        el.style.borderColor = 'rgba(42,40,32,0.08)'
+        el.style.boxShadow = '0 4px 20px rgba(42,40,32,0.05)'
       }}
     >
       <span

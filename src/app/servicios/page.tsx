@@ -77,7 +77,7 @@ export default function ServiciosPage() {
             top: 0,
             width: '50%',
             height: '100%',
-            background: 'radial-gradient(ellipse at 80% 40%, rgba(192,40,28,0.10) 0%, transparent 55%)',
+            background: 'radial-gradient(ellipse at 80% 40%, rgba(202,17,17,0.09) 0%, transparent 55%)',
             pointerEvents: 'none',
           }}
         />

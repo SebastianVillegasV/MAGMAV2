@@ -142,7 +142,7 @@ export default function HomePage() {
 
       {/* ── HOW IT WORKS ────────────────────── */}
       <section className="section" style={{ background: 'var(--magma-mid)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', right: '-20%', top: '50%', transform: 'translateY(-50%)', width: '60%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(232,150,12,0.06) 0%, transparent 65%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', right: '-20%', top: '50%', transform: 'translateY(-50%)', width: '60%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(206,141,37,0.10) 0%, transparent 65%)', pointerEvents: 'none' }} />
         <div className="container-magma">
           <RevealText>
             <p className="t-kicker" style={{ marginBottom: 16 }}>Cómo funciona</p>
@@ -185,11 +185,11 @@ export default function HomePage() {
 
       {/* ── CTA ─────────────────────────────── */}
       <section className="section" style={{ background: 'var(--magma-black)', position: 'relative', overflow: 'hidden' }}>
-        <div aria-hidden style={{ position: 'absolute', left: 'var(--gutter)', bottom: -20, fontSize: 'clamp(8rem, 20vw, 20rem)', fontWeight: 700, letterSpacing: '-0.05em', color: 'transparent', WebkitTextStroke: '1px rgba(226,216,200,0.05)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>
+        <div aria-hidden style={{ position: 'absolute', left: 'var(--gutter)', bottom: -20, fontSize: 'clamp(8rem, 20vw, 20rem)', fontWeight: 700, letterSpacing: '-0.05em', color: 'transparent', WebkitTextStroke: '1px rgba(42,40,32,0.07)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>
           MAGMA
         </div>
         {/* Ambient glow */}
-        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '60%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(232,150,12,0.08) 0%, transparent 60%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '60%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(202,17,17,0.07) 0%, transparent 60%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
 
         <div className="container-magma" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <RevealContainer>
