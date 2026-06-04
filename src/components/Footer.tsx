@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <div
               style={{
-                fontFamily: 'Pragmatica, Helvetica Neue, sans-serif',
+                fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
                 fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                 fontWeight: 700,
                 letterSpacing: '-0.03em',

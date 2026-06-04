@@ -74,7 +74,7 @@ export default function AnimatedStats({ stats }: {
             >
               <div
                 style={{
-                  fontFamily: 'ui-monospace, "JetBrains Mono", "IBM Plex Mono", monospace',
+                  fontFamily: 'var(--font-mono), ui-monospace, monospace',
                   fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
                   fontWeight: 700,
                   letterSpacing: '-0.03em',

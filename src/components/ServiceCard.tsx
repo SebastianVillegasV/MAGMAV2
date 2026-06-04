@@ -47,7 +47,7 @@ export default function ServiceCard({
     >
       <span
         style={{
-          fontFamily: 'ui-monospace, monospace',
+          fontFamily: 'var(--font-mono), ui-monospace, monospace',
           fontSize: '0.6875rem',
           fontWeight: 700,
           letterSpacing: '0.2em',

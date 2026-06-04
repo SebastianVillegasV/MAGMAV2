@@ -208,7 +208,7 @@ export default function HeroClient() {
             >
               <p
                 style={{
-                  fontFamily: 'ui-monospace, monospace',
+                  fontFamily: 'var(--font-mono), ui-monospace, monospace',
                   fontSize: 'clamp(1.75rem, 3.5vw, 3rem)',
                   fontWeight: 700,
                   letterSpacing: '-0.03em',

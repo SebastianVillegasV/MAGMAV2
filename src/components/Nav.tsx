@@ -63,7 +63,7 @@ export default function Nav() {
           <MagmaLogo />
           <span
             style={{
-              fontFamily: 'Pragmatica, Helvetica Neue, sans-serif',
+              fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
               fontSize: '0.75rem',
               fontWeight: 700,
               letterSpacing: '0.3em',

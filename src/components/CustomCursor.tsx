@@ -1,80 +1,83 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
+  const [enabled, setEnabled] = useState(false)
+
+  // Only enable on devices with a fine pointer + hover (desktop).
+  // Touch / coarse-pointer devices keep the native cursor.
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    if (mq.matches) setEnabled(true)
+  }, [])
 
   useEffect(() => {
+    if (!enabled) return
     const dot = dotRef.current
     const ring = ringRef.current
     if (!dot || !ring) return
 
-    let mouseX = 0, mouseY = 0
-    let ringX = 0, ringY = 0
-    let rafId: number
+    document.documentElement.classList.add('cursor-active')
+
+    let mouseX = window.innerWidth / 2
+    let mouseY = window.innerHeight / 2
+    let ringX = mouseX
+    let ringY = mouseY
+    let hovering = false
+    let visible = false
+    let rafId = 0
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
+      visible = true
+    }
+    const onLeaveWindow = () => { visible = false }
+    // Event delegation → also covers links rendered after mount
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as Element | null
+      hovering = !!t?.closest?.('a, button, [role="button"], input, textarea, select, label')
+    }
+
+    const loop = () => {
+      // Dot tracks the pointer 1:1
       dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`
+      // Ring eases toward the pointer; scale + color reflect hover state
+      // (computed every frame so it never gets overwritten)
+      ringX += (mouseX - ringX) * 0.18
+      ringY += (mouseY - ringY) * 0.18
+      const scale = hovering ? 1.8 : 1
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%) scale(${scale})`
+      ring.style.borderColor = hovering ? 'var(--magma-red)' : 'rgba(202,17,17,0.5)'
+      ring.style.opacity = visible ? '1' : '0'
+      dot.style.opacity = visible && !hovering ? '1' : '0'
+      rafId = requestAnimationFrame(loop)
     }
 
-    const animate = () => {
-      ringX += (mouseX - ringX) * 0.12
-      ringY += (mouseY - ringY) * 0.12
-      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`
-      rafId = requestAnimationFrame(animate)
-    }
-
-    const onEnter = () => {
-      dot.style.opacity = '1'
-      ring.style.opacity = '1'
-    }
-    const onLeave = () => {
-      dot.style.opacity = '0'
-      ring.style.opacity = '0'
-    }
-
-    const onLinkEnter = () => {
-      ring.style.transform += ' scale(2.2)'
-      ring.style.borderColor = 'var(--magma-red)'
-      dot.style.opacity = '0'
-    }
-    const onLinkLeave = () => {
-      ring.style.borderColor = 'rgba(200,55,45,0.5)'
-      dot.style.opacity = '1'
-    }
-
-    document.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseenter', onEnter)
-    document.addEventListener('mouseleave', onLeave)
-
-    const links = document.querySelectorAll('a, button, [role="button"]')
-    links.forEach(l => {
-      l.addEventListener('mouseenter', onLinkEnter)
-      l.addEventListener('mouseleave', onLinkLeave)
-    })
-
-    rafId = requestAnimationFrame(animate)
+    window.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseover', onOver, { passive: true })
+    document.documentElement.addEventListener('mouseleave', onLeaveWindow)
+    rafId = requestAnimationFrame(loop)
 
     return () => {
-      document.removeEventListener('mousemove', onMove)
-      document.removeEventListener('mouseenter', onEnter)
-      document.removeEventListener('mouseleave', onLeave)
-      links.forEach(l => {
-        l.removeEventListener('mouseenter', onLinkEnter)
-        l.removeEventListener('mouseleave', onLinkLeave)
-      })
+      window.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseover', onOver)
+      document.documentElement.removeEventListener('mouseleave', onLeaveWindow)
       cancelAnimationFrame(rafId)
+      document.documentElement.classList.remove('cursor-active')
     }
-  }, [])
+  }, [enabled])
+
+  if (!enabled) return null
 
   return (
     <>
       <div
         ref={dotRef}
+        aria-hidden
         style={{
           position: 'fixed',
           top: 0,
@@ -87,11 +90,12 @@ export default function CustomCursor() {
           zIndex: 9999,
           opacity: 0,
           transition: 'opacity 200ms ease',
-          willChange: 'transform',
+          willChange: 'transform, opacity',
         }}
       />
       <div
         ref={ringRef}
+        aria-hidden
         style={{
           position: 'fixed',
           top: 0,
@@ -99,12 +103,12 @@ export default function CustomCursor() {
           width: 32,
           height: 32,
           borderRadius: '50%',
-          border: '1px solid rgba(200,55,45,0.5)',
+          border: '1px solid rgba(202,17,17,0.5)',
           pointerEvents: 'none',
           zIndex: 9998,
           opacity: 0,
-          transition: 'opacity 200ms ease, border-color 200ms ease, transform 200ms var(--ease-out-expo)',
-          willChange: 'transform',
+          transition: 'opacity 200ms ease, border-color 200ms ease',
+          willChange: 'transform, opacity',
         }}
       />
     </>

@@ -139,7 +139,7 @@ export default function CasosPage() {
               >
                 <span
                   style={{
-                    fontFamily: 'Pragmatica, Helvetica Neue, sans-serif',
+                    fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
                     fontSize: '0.6875rem',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
@@ -236,7 +236,7 @@ export default function CasosPage() {
                     >
                       <span
                         style={{
-                          fontFamily: 'Pragmatica, Helvetica Neue, sans-serif',
+                          fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
                           fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                           fontWeight: 700,
                           letterSpacing: '-0.04em',

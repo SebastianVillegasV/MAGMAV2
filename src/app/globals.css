@@ -7,41 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Font Face ─────────────────────────────── */
-/* Place Pragmatica font files in /public/fonts/
-   Fallback: system-ui until fonts are loaded    */
-@font-face {
-  font-family: 'Pragmatica';
-  src: url('/fonts/Pragmatica-Book.woff2') format('woff2'),
-       url('/fonts/Pragmatica-Book.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pragmatica';
-  src: url('/fonts/Pragmatica-Medium.woff2') format('woff2'),
-       url('/fonts/Pragmatica-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pragmatica';
-  src: url('/fonts/Pragmatica-Bold.woff2') format('woff2'),
-       url('/fonts/Pragmatica-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pragmatica Extended';
-  src: url('/fonts/Pragmatica-Extended.woff2') format('woff2'),
-       url('/fonts/Pragmatica-Extended.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* ── Fonts ──────────────────────────────────────
+   Brand typeface = Poppins (MAGMA Brandbook 2026),
+   self-hosted via next/font. Mono = JetBrains Mono.
+   Both exposed as CSS variables from layout.tsx.    */
 
 /* ── CSS Variables — Exact values from MAGMA Brandbook 2026 ──
    LIGHT THEME: background is the brandbook bone/cream (#E2DEC0).
@@ -114,7 +83,7 @@ html {
 body {
   background-color: var(--magma-black);
   color: var(--magma-bone);
-  font-family: 'Pragmatica', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-sans), 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;
@@ -387,9 +356,8 @@ body {
   color: var(--magma-amber);
 }
 
-/* ── Custom cursor ──────────────────────────── */
-* { cursor: none !important; }
-a, button, [role="button"] { cursor: none !important; }
+/* ── Custom cursor (only when active on desktop) ── */
+.cursor-active, .cursor-active * { cursor: none !important; }
 
 /* ── Gradient text — clean, not oversaturated ── */
 .gradient-text {
@@ -473,7 +441,7 @@ button:hover .video-play-btn {
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
-  font-family: ui-monospace, monospace;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.25em;
