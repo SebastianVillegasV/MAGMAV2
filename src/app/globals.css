@@ -60,11 +60,11 @@
   --magma-dark:       #2A2820;   /* Brandbook dark (warm near-black) */
   --magma-cream:      #E2DEC0;   /* Brandbook bone/cream — exact */
 
-  /* ── Light surface scale (warm cream tones) ── */
-  --magma-black:      #E2DEC0;   /* PRIMARY BACKGROUND = brandbook bone */
-  --magma-deep:       #ECEAD8;   /* lighter — raised cards / alt sections */
-  --magma-mid:        #D6D1B2;   /* slightly deeper — alternating bands */
-  --magma-grey:       #A8A488;
+  /* ── Light surface scale (near-white, subtle cream warmth) ── */
+  --magma-black:      #FBFAF5;   /* PRIMARY BACKGROUND — off-white, hint of cream */
+  --magma-deep:       #FFFFFF;   /* raised cards — pure white */
+  --magma-mid:        #F2F0E7;   /* slightly deeper — alternating bands */
+  --magma-grey:       #B8B4A2;
 
   /* ── Ink (dark text on cream) ── */
   --magma-bone:       #2A2820;   /* PRIMARY TEXT = brandbook dark */

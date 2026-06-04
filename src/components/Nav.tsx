@@ -40,7 +40,7 @@ export default function Nav() {
           padding: '0 var(--gutter)',
           transition: 'background 600ms var(--ease-in-out), border-color 600ms var(--ease-in-out)',
           background: scrolled
-            ? 'rgba(226,222,192,0.85)'
+            ? 'rgba(251,250,245,0.85)'
             : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
