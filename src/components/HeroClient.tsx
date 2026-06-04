@@ -75,9 +75,10 @@ export default function HeroClient() {
         }}
       />
 
-      {/* Topographic contour lines — evokes "magma" / cartographic relief */}
+      {/* Topographic contour lines — evokes "magma" / cartographic relief.
+          Reveals with a wipe on load, then drifts slowly. */}
       <div
-        className="topo-drift"
+        className="topo-anim"
         style={{
           position: 'absolute',
           inset: '-4%',
@@ -85,7 +86,6 @@ export default function HeroClient() {
           backgroundSize: 'cover',
           backgroundPosition: 'center right',
           color: 'var(--magma-dark)',
-          opacity: 0.15,
           maskImage: 'radial-gradient(ellipse 95% 85% at 72% 55%, black 25%, transparent 88%)',
           WebkitMaskImage: 'radial-gradient(ellipse 95% 85% at 72% 55%, black 25%, transparent 88%)',
           pointerEvents: 'none',
