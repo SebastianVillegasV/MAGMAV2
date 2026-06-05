@@ -38,8 +38,14 @@ const stats = [
 ]
 
 const logos = [
-  'Jose Cuervo', 'Dislicores', 'Associated Brands', 'Red Bull',
-  'Chevignon', 'Mil976', 'El Fortín',
+  { src: '/clientes/jose-cuervo.png', alt: 'Jose Cuervo' },
+  { src: '/clientes/dislicores.png', alt: 'Dislicores' },
+  { src: '/clientes/associated-brands.png', alt: 'Associated Brands Colombia' },
+  { src: '/clientes/red-bull.png', alt: 'Red Bull' },
+  { src: '/clientes/chevignon.png', alt: 'Chevignon' },
+  { src: '/clientes/gato-negro.png', alt: 'Gato Negro' },
+  { src: '/clientes/auteco.png', alt: 'Auteco' },
+  { src: '/clientes/jp-chenet.png', alt: 'JP Chenet' },
 ]
 
 const steps = [
@@ -66,8 +72,11 @@ export default function HomePage() {
         </p>
         <div className="marquee-wrapper">
           <div className="marquee-track">
-            {[...logos, ...logos].map((name, i) => (
-              <span key={i} className="marquee-item">{name}</span>
+            {[...logos, ...logos].map((logo, i) => (
+              <span key={i} className="marquee-item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logo.src} alt={logo.alt} className="marquee-logo" />
+              </span>
             ))}
           </div>
         </div>

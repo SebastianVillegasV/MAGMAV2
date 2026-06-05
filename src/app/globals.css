@@ -460,18 +460,24 @@ button:hover .video-play-btn {
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(42,40,32,0.30);
-  padding: 0 clamp(24px, 4vw, 56px);
-  border-right: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(28px, 4vw, 64px);
   white-space: nowrap;
-  transition: color 200ms ease;
 }
-.marquee-item:hover { color: var(--magma-red); }
+.marquee-logo {
+  height: clamp(24px, 3.4vw, 34px);
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.5;
+  transition: opacity 250ms ease, filter 250ms ease;
+}
+.marquee-logo:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
