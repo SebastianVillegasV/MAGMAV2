@@ -38,8 +38,8 @@ const stats = [
 ]
 
 const logos = [
-  'EMPRESA A', 'STARTUP B', 'CORP C', 'BRAND D',
-  'FIRMA E', 'GRUPO F', 'HOLDING G', 'VENTURES H',
+  'Jose Cuervo', 'Dislicores', 'Associated Brands', 'Red Bull',
+  'Chevignon', 'Mil976', 'El Fortín',
 ]
 
 const steps = [
@@ -62,7 +62,7 @@ export default function HomePage() {
       {/* ── LOGO MARQUEE ────────────────────── */}
       <section style={{ background: 'var(--magma-black)', padding: 'clamp(32px, 5vw, 56px) 0', overflow: 'hidden' }}>
         <p className="t-label" style={{ textAlign: 'center', marginBottom: 24, color: 'var(--magma-grey)' }}>
-          Equipos que ya trabajan con Magma
+          Marcas que han potenciado sus equipos con Magma
         </p>
         <div className="marquee-wrapper">
           <div className="marquee-track">
