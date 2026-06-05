@@ -395,6 +395,52 @@ body {
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Lava background (Magma en números) ────────
+   Soft radial blobs that drift via transform only (GPU-composited,
+   NO filter:blur). The gradients' transparent falloff provides the
+   softness, so there's no per-frame blur recalculation. */
+.lava-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lava-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.lava-a {
+  width: 80%; aspect-ratio: 1; left: -8%; top: 6%;
+  background: radial-gradient(circle, rgba(202,17,17,0.16) 0%, rgba(202,17,17,0) 70%);
+  animation: lavaA 28s ease-in-out infinite;
+}
+.lava-b {
+  width: 65%; aspect-ratio: 1; right: -6%; top: 0%;
+  background: radial-gradient(circle, rgba(224,21,21,0.12) 0%, rgba(224,21,21,0) 70%);
+  animation: lavaB 36s ease-in-out infinite;
+}
+.lava-c {
+  width: 72%; aspect-ratio: 1; left: 22%; bottom: -10%;
+  background: radial-gradient(circle, rgba(202,17,17,0.11) 0%, rgba(202,17,17,0) 68%);
+  animation: lavaC 24s ease-in-out infinite;
+}
+@keyframes lavaA {
+  0%, 100% { transform: translate(-6%, -3%) scale(1); }
+  50%      { transform: translate(6%, 7%) scale(1.12); }
+}
+@keyframes lavaB {
+  0%, 100% { transform: translate(8%, 5%) scale(1.08); }
+  50%      { transform: translate(-6%, -4%) scale(0.92); }
+}
+@keyframes lavaC {
+  0%, 100% { transform: translate(0%, 6%) scale(1); }
+  50%      { transform: translate(-9%, -6%) scale(1.16); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lava-blob { animation: none; }
+}
+
 /* ── Stats scroll section grid ──────────────── */
 .stats-scroll-grid {
   display: grid;
