@@ -85,12 +85,20 @@ export default function AnimatedStats({ stats }: { stats: Stat[] }) {
           alignItems: 'center',
         }}
       >
-        {/* Lava background — slowly drifting, blurred red blobs */}
-        <div className="lava-bg" aria-hidden>
-          <span className="lava-blob lava-a" />
-          <span className="lava-blob lava-b" />
-          <span className="lava-blob lava-c" />
-        </div>
+        {/* Ambient glow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%,-50%)',
+            width: '70%',
+            aspectRatio: '1',
+            background: 'radial-gradient(circle, rgba(202,17,17,0.10) 0%, transparent 60%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none',
+          }}
+        />
 
         <div className="container-magma" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
           <p className="t-kicker" style={{ marginBottom: 'clamp(24px, 5vh, 56px)', color: 'var(--magma-amber)' }}>
