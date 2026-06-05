@@ -395,6 +395,52 @@ body {
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Lava background (Magma en números) ──────── */
+.lava-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lava-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+.lava-a {
+  width: 55%; aspect-ratio: 1; left: 4%; top: 18%;
+  background: radial-gradient(circle, rgba(202,17,17,0.18) 0%, transparent 65%);
+  animation: lavaA 26s ease-in-out infinite;
+}
+.lava-b {
+  width: 46%; aspect-ratio: 1; right: 3%; top: 8%;
+  background: radial-gradient(circle, rgba(224,21,21,0.13) 0%, transparent 65%);
+  animation: lavaB 34s ease-in-out infinite;
+}
+.lava-c {
+  width: 52%; aspect-ratio: 1; left: 28%; bottom: 2%;
+  background: radial-gradient(circle, rgba(202,17,17,0.11) 0%, transparent 62%);
+  animation: lavaC 22s ease-in-out infinite;
+}
+@keyframes lavaA {
+  0%, 100% { transform: translate(-8%, -4%) scale(1); }
+  33%      { transform: translate(7%, 6%) scale(1.18); }
+  66%      { transform: translate(-3%, 9%) scale(0.92); }
+}
+@keyframes lavaB {
+  0%, 100% { transform: translate(10%, 7%) scale(1.1); }
+  50%      { transform: translate(-7%, -5%) scale(0.88); }
+}
+@keyframes lavaC {
+  0%, 100% { transform: translate(0%, 8%) scale(1); }
+  40%      { transform: translate(-11%, -7%) scale(1.22); }
+  80%      { transform: translate(5%, 3%) scale(0.94); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lava-blob { animation: none; }
+}
+
 /* ── Stats scroll section grid ──────────────── */
 .stats-scroll-grid {
   display: grid;
