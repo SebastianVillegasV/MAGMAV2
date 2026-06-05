@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
-import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 type Stat = { prefix?: string; value: number; suffix?: string; label: string }
 
-/* ─── Animated number (counts up when its card is shown) ─── */
-function Counter({ to, prefix = '', suffix = '', duration = 1400 }: {
+/* ─── Number that counts up on mount ─── */
+function Counter({ to, prefix = '', suffix = '', duration = 1100 }: {
   to: number; prefix?: string; suffix?: string; duration?: number
 }) {
   const [value, setValue] = useState(0)
@@ -27,189 +27,194 @@ function Counter({ to, prefix = '', suffix = '', duration = 1400 }: {
   return <>{prefix}{value}{suffix}</>
 }
 
-const variants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80 }),
-  center: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80 }),
-}
-
 export default function AnimatedStats({ stats }: { stats: Stat[] }) {
   const count = stats.length
-  const [[index, dir], setIndex] = useState<[number, number]>([0, 0])
-  const [paused, setPaused] = useState(false)
+  const ref = useRef<HTMLElement>(null)
+  const fillRef = useRef<HTMLDivElement>(null)
+  const prevIndex = useRef(0)
+  const [active, setActive] = useState(0)
+  const [dir, setDir] = useState(1)
 
-  const go = useCallback((d: number) => {
-    setIndex(([i]) => [(i + d + count) % count, d])
+  // Scroll-driven index via getBoundingClientRect (robust across browsers).
+  // setActive fires ONLY when the index actually changes (not every frame),
+  // so the counter isn't remounted mid-count.
+  useEffect(() => {
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const el = ref.current
+      if (!el) return
+      const vh = window.innerHeight
+      const total = el.offsetHeight - vh
+      const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), total)
+      const p = total > 0 ? scrolled / total : 0
+      if (fillRef.current) fillRef.current.style.transform = `scaleX(${p})`
+      const i = Math.max(0, Math.min(count - 1, Math.floor(p * count + 0.00001)))
+      if (i !== prevIndex.current) {
+        setDir(i > prevIndex.current ? 1 : -1)
+        prevIndex.current = i
+        setActive(i)
+      }
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    update()
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [count])
 
-  const goTo = useCallback((target: number) => {
-    setIndex(([i]) => [target, target > i ? 1 : -1])
-  }, [])
-
-  // Autoplay (pauses on hover / focus / drag)
-  useEffect(() => {
-    if (paused) return
-    const id = setInterval(() => go(1), 4500)
-    return () => clearInterval(id)
-  }, [paused, go, index])
-
-  const onDragEnd = (_: unknown, info: PanInfo) => {
-    if (info.offset.x < -60 || info.velocity.x < -300) go(1)
-    else if (info.offset.x > 60 || info.velocity.x > 300) go(-1)
-  }
-
-  const current = stats[index]
+  const current = stats[active]
+  const indexLabel = String(active + 1).padStart(2, '0')
 
   return (
     <section
-      style={{ background: 'var(--magma-deep)', borderTop: '1px solid var(--stroke)', borderBottom: '1px solid var(--stroke)', padding: 'clamp(56px, 9vw, 96px) 0', overflow: 'hidden' }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      ref={ref}
+      style={{ height: `${count * 85}vh`, position: 'relative', background: 'var(--magma-dark)' }}
     >
-      <div className="container-magma">
-        <motion.p
-          className="t-kicker"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: EXPO }}
-          style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 48px)' }}
-        >
-          Magma en números
-        </motion.p>
+      <div
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        {/* Ambient glow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%,-50%)',
+            width: '70%',
+            aspectRatio: '1',
+            background: 'radial-gradient(circle, rgba(202,17,17,0.10) 0%, transparent 60%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none',
+          }}
+        />
 
-        {/* Carousel row: arrow · card · arrow */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(12px, 3vw, 32px)' }}>
-          <CarouselArrow dir="left" onClick={() => go(-1)} />
+        <div className="container-magma" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+          <p className="t-kicker" style={{ marginBottom: 'clamp(24px, 5vh, 56px)', color: 'var(--magma-amber)' }}>
+            Magma en números
+          </p>
 
-          <div
-            style={{ position: 'relative', width: 'min(440px, 100%)', height: 280 }}
-          >
-            <AnimatePresence custom={dir} mode="popLayout" initial={false}>
-              <motion.div
-                key={index}
-                custom={dir}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: EXPO }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.18}
-                onDragStart={() => setPaused(true)}
-                onDragEnd={onDragEnd}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  padding: 'clamp(32px, 5vw, 48px)',
-                  background: '#fff',
-                  border: '1px solid var(--stroke)',
-                  borderRadius: 20,
-                  boxShadow: '0 10px 40px rgba(42,40,32,0.08)',
-                  cursor: 'grab',
-                }}
-                whileTap={{ cursor: 'grabbing' }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-mono), ui-monospace, monospace',
-                    fontSize: 'clamp(3.5rem, 9vw, 5.5rem)',
-                    fontWeight: 700,
-                    letterSpacing: '-0.04em',
-                    lineHeight: 1,
-                    marginBottom: 16,
-                    background: 'linear-gradient(135deg, var(--magma-red-bright) 0%, var(--magma-amber) 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
+          <div className="stats-scroll-grid">
+            {/* Left: the metric */}
+            <div style={{ position: 'relative', minHeight: 'clamp(180px, 32vh, 340px)' }}>
+              <AnimatePresence mode="wait" custom={dir} initial={false}>
+                <motion.div
+                  key={active}
+                  custom={dir}
+                  initial={{ y: dir > 0 ? 70 : -70, opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+                  animate={{ y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+                  exit={{ y: dir > 0 ? -50 : 50, opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+                  transition={{ duration: 0.6, ease: EXPO }}
+                  style={{ position: 'absolute', inset: 0 }}
                 >
-                  <Counter to={current.value} prefix={current.prefix} suffix={current.suffix} />
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono), ui-monospace, monospace',
+                      fontSize: 'clamp(4.5rem, 16vw, 12rem)',
+                      fontWeight: 700,
+                      letterSpacing: '-0.05em',
+                      lineHeight: 0.9,
+                      background: 'linear-gradient(120deg, var(--magma-red-bright) 20%, var(--magma-amber) 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      width: 'fit-content',
+                    }}
+                  >
+                    <Counter to={current.value} prefix={current.prefix} suffix={current.suffix} />
+                  </div>
+                  <p
+                    style={{
+                      marginTop: 'clamp(12px, 2vh, 24px)',
+                      fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)',
+                      fontWeight: 500,
+                      letterSpacing: '-0.01em',
+                      color: 'var(--magma-cream)',
+                      maxWidth: '18ch',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {current.label}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Right: giant index + progress */}
+            <div className="stats-scroll-aside">
+              <div style={{ position: 'relative', height: 'clamp(120px, 22vh, 240px)', display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+                <AnimatePresence mode="wait" custom={dir} initial={false}>
+                  <motion.span
+                    key={indexLabel}
+                    custom={dir}
+                    initial={{ y: dir > 0 ? '55%' : '-55%', opacity: 0 }}
+                    animate={{ y: '0%', opacity: 1 }}
+                    exit={{ y: dir > 0 ? '-55%' : '55%', opacity: 0 }}
+                    transition={{ duration: 0.6, ease: EXPO }}
+                    style={{
+                      fontFamily: 'var(--font-mono), ui-monospace, monospace',
+                      fontSize: 'clamp(7rem, 18vw, 16rem)',
+                      fontWeight: 700,
+                      lineHeight: 0.8,
+                      color: 'transparent',
+                      WebkitTextStroke: '1.5px rgba(226,222,192,0.28)',
+                      letterSpacing: '-0.03em',
+                    }}
+                  >
+                    {indexLabel}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              {/* Progress bar */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 'clamp(20px, 4vh, 40px)', width: '100%' }}>
+                <div style={{ position: 'relative', flex: 1, height: 2, background: 'rgba(226,222,192,0.15)', overflow: 'hidden' }}>
+                  <div
+                    ref={fillRef}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      transformOrigin: 'left',
+                      transform: 'scaleX(0)',
+                      background: 'linear-gradient(90deg, var(--magma-red), var(--magma-amber))',
+                    }}
+                  />
                 </div>
-                <p
-                  style={{
-                    fontSize: '0.8125rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.16em',
-                    textTransform: 'uppercase',
-                    color: 'var(--magma-bone-dim)',
-                    lineHeight: 1.5,
-                    maxWidth: '20ch',
-                  }}
-                >
-                  {current.label}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+                <span style={{ fontFamily: 'var(--font-mono), ui-monospace, monospace', fontSize: '0.8125rem', letterSpacing: '0.1em', color: 'var(--magma-bone-dim)', flexShrink: 0 }}>
+                  {indexLabel} / {String(count).padStart(2, '0')}
+                </span>
+              </div>
+
+              {/* Scroll hint on first card */}
+              <AnimatePresence>
+                {active === 0 && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    style={{ marginTop: 24, fontSize: '0.6875rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--magma-bone-dim)', display: 'flex', alignItems: 'center', gap: 8 }}
+                  >
+                    Desliza para ver más
+                    <motion.span animate={{ y: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }} style={{ display: 'inline-block' }}>↓</motion.span>
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-
-          <CarouselArrow dir="right" onClick={() => go(1)} />
-        </div>
-
-        {/* Dots */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 'clamp(28px, 4vw, 40px)' }}>
-          {stats.map((_, i) => (
-            <button
-              key={i}
-              aria-label={`Ver estadística ${i + 1}`}
-              onClick={() => goTo(i)}
-              style={{
-                width: i === index ? 28 : 8,
-                height: 8,
-                borderRadius: 4,
-                border: 'none',
-                padding: 0,
-                background: i === index ? 'var(--magma-red)' : 'var(--stroke-bright)',
-                cursor: 'pointer',
-                transition: 'width 300ms var(--ease-out-expo), background 300ms ease',
-              }}
-            />
-          ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function CarouselArrow({ dir, onClick }: { dir: 'left' | 'right'; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={dir === 'left' ? 'Anterior' : 'Siguiente'}
-      style={{
-        flexShrink: 0,
-        width: 48,
-        height: 48,
-        borderRadius: '50%',
-        border: '1px solid var(--stroke-bright)',
-        background: 'transparent',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'var(--magma-dark)',
-        cursor: 'pointer',
-        transition: 'border-color 200ms ease, background 200ms ease, color 200ms ease',
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget
-        el.style.borderColor = 'var(--magma-red)'
-        el.style.color = 'var(--magma-red)'
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget
-        el.style.borderColor = 'var(--stroke-bright)'
-        el.style.color = 'var(--magma-dark)'
-      }}
-    >
-      <svg width="16" height="14" viewBox="0 0 16 14" fill="none" style={{ transform: dir === 'left' ? 'scaleX(-1)' : 'none' }}>
-        <path d="M1 7H14M10 1L15 7L10 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
-      </svg>
-    </button>
   )
 }

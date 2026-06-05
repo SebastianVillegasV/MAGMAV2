@@ -395,6 +395,25 @@ body {
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Stats scroll section grid ──────────────── */
+.stats-scroll-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+.stats-scroll-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .stats-scroll-grid { grid-template-columns: 1fr; gap: clamp(24px, 6vh, 48px); }
+  .stats-scroll-aside { align-items: flex-start; text-align: left; }
+  .stats-scroll-aside > div:first-child { justify-content: flex-start !important; }
+}
+
 /* ── Topographic: reveal on load + slow drift ──
    The reveal ENDS at the exact transform where the drift STARTS
    (translate(0,0) scale(1.02)) so the hand-off is seamless. */
