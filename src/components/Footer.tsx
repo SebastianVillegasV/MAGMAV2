@@ -40,8 +40,7 @@ export default function Footer() {
                 color: 'var(--magma-bone-dim)',
               }}
             >
-              Tecnología y audiovisual para hacer
-              equipos comerciales más capaces.
+              Equipos más capaces cada día.
             </p>
           </div>
 
@@ -64,7 +63,7 @@ export default function Footer() {
             <FooterCol
               title="Contacto"
               links={[
-                { href: 'mailto:hola@magma.co', label: 'hola@magma.co' },
+                { href: 'mailto:sara@magma.com', label: 'sara@magma.com' },
                 { href: 'https://linkedin.com', label: 'LinkedIn' },
               ]}
             />
@@ -100,7 +99,7 @@ export default function Footer() {
                   paddingRight: 60,
                 }}
               >
-                {['Estrategia Comercial', 'Contenido Audiovisual', 'Equipos Capaces', 'Fórmulas Operativas', 'Tecnología Educativa', 'Impacto Medible'].map((item, i) => (
+                {['Equipos Imparables', 'Historias que Enseñan', 'Método Propio', 'Aprendizaje Inteligente', 'Resultados Reales', 'Conocimiento en Acción'].map((item, i) => (
                   <span key={i}>
                     {item}
                     <span style={{ color: 'var(--magma-amber)', margin: '0 20px' }}>—</span>

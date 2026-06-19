@@ -146,7 +146,7 @@ export default function HeroClient() {
               transition={{ delay: 0.5, duration: 0.9, ease: EXPO }}
               style={{ display: 'block', overflow: 'hidden' }}
             >
-              Vender mejor
+              Entrena distinto,
             </motion.span>
             <motion.span
               initial={{ y: '110%' }}
@@ -155,7 +155,7 @@ export default function HeroClient() {
               style={{ display: 'block', overflow: 'hidden' }}
             >
               {/* gradient-text: red → amber */}
-              <span className="gradient-text">se aprende.</span>
+              <span className="gradient-text">distintos resultados</span>
             </motion.span>
           </motion.h1>
         </div>
@@ -167,10 +167,10 @@ export default function HeroClient() {
           transition={{ delay: 0.95, duration: 0.8, ease: EXPO }}
           style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'flex-end', gap: 40, marginTop: 'clamp(32px, 5vw, 56px)' }}
         >
-          <p style={{ maxWidth: '46ch', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', lineHeight: 1.6, color: 'var(--magma-bone-dim)' }}>
-            Magma une el poder audiovisual y la precisión de la tecnología
-            educativa para transformar cómo los equipos comerciales aprenden,
-            practican y aplican el conocimiento en escenarios reales.
+          <p style={{ maxWidth: '50ch', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', lineHeight: 1.6, color: 'var(--magma-bone-dim)' }}>
+            Un manual o una presentación no cambia comportamientos. Una
+            experiencia sí. Magma convierte todo el conocimiento de tu empresa
+            en algo que tus equipos ven, sienten y aplican.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
             <Link href="/contacto" className="btn-primary btn-glow">

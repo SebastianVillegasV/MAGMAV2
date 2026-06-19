@@ -55,14 +55,14 @@ export default function VideoShowcase() {
               marginBottom: 20,
             }}
           >
-            El aprendizaje llega al{' '}
+            El aprendizaje en el{' '}
             <span className="gradient-text">momento de la verdad.</span>
           </h2>
           <p style={{ fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', lineHeight: 1.65, color: 'var(--magma-bone-dim)' }}>
-            Un vendedor real, en su punto de venta, recibe entrenamiento sobre
-            producto directamente en WhatsApp — el canal donde ya trabaja todos
-            los días. Sin apps nuevas, sin fricción: la fórmula correcta en el
-            momento exacto.
+            Un vendedor que recibe entrenamiento sobre productos y servicios
+            directamente en WhatsApp — el canal donde ya trabaja todos los días.
+            Sin apps nuevas, sin fricción: la fórmula correcta en el momento
+            exacto, con asistencia de IA que lo apoya en todo momento.
           </p>
         </motion.div>
 
@@ -164,8 +164,8 @@ export default function VideoShowcase() {
         >
           {[
             { k: 'En el flujo real', v: 'Entrenamiento dentro de WhatsApp, sin apps ni fricción.' },
-            { k: 'Gamificado', v: 'Puntos Grand Prix, rankings y reconocimiento que motivan al equipo.' },
-            { k: 'Medible', v: 'Cada interacción genera datos de dominio de producto por vendedor.' },
+            { k: 'Gamificado', v: 'Puntos, rankings y reconocimiento que motivan al equipo.' },
+            { k: 'Asistencia', v: 'Acceso 24/7 al banco de conocimiento de toda la organización; un agente IA resuelve cualquier inquietud.' },
           ].map((item, i) => (
             <div
               key={i}

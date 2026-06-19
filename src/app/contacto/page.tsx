@@ -133,7 +133,7 @@ export default function ContactoPage() {
                 <div>
                   <p className="t-label" style={{ marginBottom: 8 }}>Email</p>
                   <a
-                    href="mailto:hola@magma.co"
+                    href="mailto:sara@magma.com"
                     style={{
                       fontSize: '1rem',
                       color: 'var(--magma-bone)',
@@ -146,7 +146,7 @@ export default function ContactoPage() {
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--magma-amber)')}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--magma-bone)')}
                   >
-                    hola@magma.co
+                    sara@magma.com
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" />
                     </svg>

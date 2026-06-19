@@ -49,10 +49,10 @@ const logos = [
 ]
 
 const steps = [
-  { week: 'Semana 1–2', num: '01', title: 'Diagnóstico', desc: 'Analizamos el proceso de venta, las objeciones frecuentes y las brechas del equipo.' },
-  { week: 'Semana 3–5', num: '02', title: 'Producción', desc: 'Creamos las fórmulas en video: cortas, específicas, aplicables en el día a día.' },
-  { week: 'Semana 6', num: '03', title: 'Activación', desc: 'Lanzamos la plataforma y entrenamos al equipo en cómo consumir el contenido.' },
-  { week: 'Semana 7–8', num: '04', title: 'Medición', desc: 'Medimos retención, aplicación y cambios en métricas comerciales reales.' },
+  { week: 'Mes 1', num: '01', title: 'Diagnóstico', desc: 'Analizamos los procesos, las objeciones frecuentes y las brechas del equipo.' },
+  { week: 'Mes 1', num: '02', title: 'Producción', desc: 'Creamos las fórmulas en video: cortas, específicas, aplicables en el día a día.' },
+  { week: 'Mes 2', num: '03', title: 'Activación', desc: 'Lanzamos la plataforma y entrenamos al equipo en cómo consumir el contenido.' },
+  { week: 'Mes 2', num: '04', title: 'Medición', desc: 'Medimos interacción, retención de conocimiento, aplicación y analizamos con modelos predictivos cambios comerciales.' },
 ]
 
 /* ─── Page ─────────────────────────────────── */
@@ -97,10 +97,10 @@ export default function HomePage() {
                   color: 'var(--magma-bone)',
                 }}
               >
-                "El 60% de los vendedores no aplica lo que aprendió en la capacitación tradicional."
+                La falta de capacitación reduce la productividad entre 5 y 10 veces más de lo que cuesta invertir en ella.
               </blockquote>
-              <p style={{ marginTop: 24, fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--magma-bone-dim)' }}>
-                — Sales Enablement Collective, 2024
+              <p style={{ marginTop: 24, fontSize: '0.9375rem', lineHeight: 1.6, color: 'var(--magma-red)', fontWeight: 500 }}>
+                Aceleramos la productividad de tu equipo por encima del 70%.
               </p>
             </RevealText>
 
@@ -108,8 +108,8 @@ export default function HomePage() {
               <RevealItem>
                 <p className="t-kicker" style={{ marginBottom: 16 }}>El problema</p>
                 <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--magma-bone-dim)', marginBottom: 32 }}>
-                  Los equipos comerciales aprenden en talleres desconectados de la operación real.
-                  El conocimiento no llega al momento de la verdad: la llamada, la demo, el cierre.
+                  Los equipos aprenden en talleres muy largos y desconectados de la operación real.
+                  El conocimiento no llega al momento de la verdad: la llamada, la objeción, el cierre.
                 </p>
               </RevealItem>
               <RevealItem>
@@ -160,7 +160,7 @@ export default function HomePage() {
           <RevealText>
             <p className="t-kicker" style={{ marginBottom: 16 }}>Cómo funciona</p>
             <h2 className="t-headline" style={{ maxWidth: '24ch', marginBottom: 'clamp(48px, 8vw, 80px)', color: 'var(--magma-bone)' }}>
-              Del diagnóstico al impacto medible en 8 semanas.
+              Del diagnóstico al impacto, en solo 1 semestre empiezas a ver los cambios.
             </h2>
           </RevealText>
 
@@ -212,7 +212,7 @@ export default function HomePage() {
             <RevealItem>
               <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, color: 'var(--magma-bone)', marginBottom: 24 }}>
                 Tu equipo puede<br />
-                <span className="gradient-text">vender diferente.</span>
+                <span className="gradient-text">aprender y crecer diferente.</span>
               </h2>
             </RevealItem>
             <RevealItem>
