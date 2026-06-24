@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import NumberScramble from '@/components/NumberScramble'
+import ServicesSlider from '@/components/ServicesSlider'
 
 export const metadata: Metadata = {
   title: 'Servicios',
@@ -120,139 +121,8 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* ── SERVICE DETAIL ──────────────────── */}
-      {services.map((svc, i) => (
-        <section
-          key={i}
-          style={{
-            background: i % 2 === 0 ? 'var(--magma-black)' : 'var(--magma-deep)',
-            borderBottom: '1px solid var(--stroke)',
-          }}
-        >
-          <div className="container-magma">
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 'clamp(48px, 7vw, 100px)',
-                paddingBlock: 'clamp(64px, 10vw, 120px)',
-                alignItems: 'start',
-              }}
-            >
-              {/* Left */}
-              <div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 20,
-                    marginBottom: 32,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-sans), Helvetica Neue, sans-serif',
-                      fontSize: '0.6875rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.2em',
-                      color: 'var(--magma-amber)',
-                    }}
-                  >
-                    {svc.number}
-                  </span>
-                  <div style={{ flex: 1, height: 1, background: 'var(--stroke)' }} />
-                  <span className="t-label" style={{ color: 'var(--magma-grey)' }}>
-                    {svc.category}
-                  </span>
-                </div>
-
-                <h2
-                  style={{
-                    fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                    fontWeight: 700,
-                    letterSpacing: '-0.03em',
-                    lineHeight: 1.05,
-                    color: 'var(--magma-bone)',
-                    marginBottom: 20,
-                  }}
-                >
-                  {svc.title}
-                </h2>
-
-                <p
-                  style={{
-                    fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
-                    fontWeight: 500,
-                    color: 'var(--magma-amber)',
-                    letterSpacing: '-0.01em',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {svc.headline}
-                </p>
-              </div>
-
-              {/* Right */}
-              <div>
-                <p
-                  style={{
-                    fontSize: '0.9375rem',
-                    lineHeight: 1.8,
-                    color: 'var(--magma-bone-dim)',
-                    marginBottom: 40,
-                    whiteSpace: 'pre-line',
-                  }}
-                >
-                  {svc.body}
-                </p>
-
-                {/* Deliverables */}
-                <div>
-                  <p
-                    style={{
-                      fontSize: '0.6875rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
-                      color: 'var(--magma-bone-dim)',
-                      marginBottom: 16,
-                    }}
-                  >
-                    Entregables
-                  </p>
-                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    {svc.deliverables.map((d, j) => (
-                      <li
-                        key={j}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 14,
-                          fontSize: '0.9375rem',
-                          color: 'var(--magma-bone)',
-                          paddingBlock: 10,
-                          borderBottom: '1px solid var(--stroke)',
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: '50%',
-                            background: 'var(--magma-amber)',
-                            flexShrink: 0,
-                          }}
-                        />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
+      {/* ── SERVICE DETAIL — slider de las tres palancas ── */}
+      <ServicesSlider services={services} />
 
       {/* ── PRICING TEASER ──────────────────── */}
       <section
