@@ -99,9 +99,9 @@ export default function HeroClient() {
         transition={{ delay: 1.2, duration: 0.8 }}
         style={{ position: 'absolute', top: 'calc(var(--nav-h) + 32px)', right: 'var(--gutter)', textAlign: 'right' }}
       >
-        <p className="t-label">Plataforma B2B</p>
+        <p className="t-label">Formación de equipos</p>
         <p className="t-label" style={{ color: 'var(--magma-teal)', marginTop: 4 }}>
-          Solución de formación
+          comerciales y empresariales
         </p>
       </motion.div>
 
