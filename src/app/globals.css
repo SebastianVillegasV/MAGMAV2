@@ -395,6 +395,21 @@ body {
   box-shadow: 0 4px 24px rgba(202,17,17,0.30);
 }
 
+/* ── Video showcase header (2 columns) ───────── */
+.video-header-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: end;
+}
+@media (max-width: 860px) {
+  .video-header-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
+    align-items: start;
+  }
+}
+
 /* ── Lava background (Magma en números) ────────
    Soft radial blobs that drift via transform only (GPU-composited,
    NO filter:blur). The gradients' transparent falloff provides the

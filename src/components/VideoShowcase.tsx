@@ -36,29 +36,32 @@ export default function VideoShowcase() {
       />
 
       <div className="container-magma" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Header */}
+        {/* Header — two columns: headline left, paragraph right */}
         <motion.div
+          className="video-header-grid"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: EXPO }}
-          style={{ maxWidth: '52ch', marginBottom: 'clamp(40px, 6vw, 64px)' }}
+          style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}
         >
-          <p className="t-kicker" style={{ marginBottom: 16 }}>Magma en acción</p>
-          <h2
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-              fontWeight: 700,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.05,
-              color: 'var(--magma-bone)',
-              marginBottom: 20,
-            }}
-          >
-            El aprendizaje en el{' '}
-            <span className="gradient-text">momento de la verdad.</span>
-          </h2>
-          <p style={{ fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', lineHeight: 1.65, color: 'var(--magma-bone-dim)' }}>
+          <div>
+            <p className="t-kicker" style={{ marginBottom: 16 }}>Magma en acción</p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.05,
+                color: 'var(--magma-bone)',
+                maxWidth: '14ch',
+              }}
+            >
+              El aprendizaje en el{' '}
+              <span className="gradient-text">momento de la verdad.</span>
+            </h2>
+          </div>
+          <p style={{ fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', lineHeight: 1.65, color: 'var(--magma-bone-dim)', maxWidth: '42ch' }}>
             Un vendedor que recibe entrenamiento sobre productos y servicios
             directamente en WhatsApp — el canal donde ya trabaja todos los días.
             Sin apps nuevas, sin fricción: la fórmula correcta en el momento
