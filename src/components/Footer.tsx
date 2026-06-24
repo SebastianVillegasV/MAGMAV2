@@ -96,7 +96,6 @@ export default function Footer() {
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   color: 'var(--magma-bone-dim)',
-                  paddingRight: 60,
                 }}
               >
                 {['Equipos Imparables', 'Historias que Enseñan', 'Método Propio', 'Aprendizaje Inteligente', 'Resultados Reales', 'Conocimiento en Acción'].map((item, i) => (
