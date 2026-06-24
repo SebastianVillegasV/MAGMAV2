@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import NumberScramble from '@/components/NumberScramble'
 
 export const metadata: Metadata = {
   title: 'Servicios',
@@ -93,8 +94,12 @@ export default function ServiciosPage() {
             <div>
               <p className="t-kicker" style={{ marginBottom: 24 }}>Servicios</p>
               <h1 className="t-super" style={{ color: 'var(--magma-bone)' }}>
-                Un sistema,<br />
-                <span style={{ color: 'var(--magma-amber)' }}>no un curso.</span>
+                <NumberScramble
+                  lines={[
+                    { text: 'Un sistema,' },
+                    { text: 'no un curso.', color: 'var(--magma-amber)' },
+                  ]}
+                />
               </h1>
             </div>
             <div>
