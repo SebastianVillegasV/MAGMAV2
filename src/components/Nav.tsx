@@ -30,23 +30,25 @@ export default function Nav() {
       <nav
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 'clamp(12px, 1.8vw, 22px)',
+          left: 'clamp(12px, 2.5vw, 32px)',
+          right: 'clamp(12px, 2.5vw, 32px)',
           zIndex: 100,
           height: 'var(--nav-h)',
           display: 'flex',
           alignItems: 'center',
-          padding: '0 var(--gutter)',
-          transition: 'background 600ms var(--ease-in-out), border-color 600ms var(--ease-in-out)',
+          padding: '0 clamp(16px, 2vw, 28px)',
+          borderRadius: 'clamp(14px, 1.4vw, 20px)',
           background: scrolled
-            ? 'rgba(251,250,245,0.85)'
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled
-            ? '1px solid var(--stroke)'
-            : '1px solid transparent',
+            ? 'rgba(251,250,245,0.78)'
+            : 'rgba(251,250,245,0.55)',
+          backdropFilter: 'blur(18px) saturate(150%)',
+          WebkitBackdropFilter: 'blur(18px) saturate(150%)',
+          border: '1px solid rgba(42,40,32,0.08)',
+          boxShadow: scrolled
+            ? '0 10px 34px rgba(42,40,32,0.14)'
+            : '0 6px 24px rgba(42,40,32,0.08)',
+          transition: 'background 400ms var(--ease-in-out), box-shadow 400ms var(--ease-in-out)',
         }}
       >
         {/* Logo — imagotipo + wordmark (MAGMA Brandbook) */}
