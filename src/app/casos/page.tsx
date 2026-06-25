@@ -20,7 +20,7 @@ const cases = [
     results: [
       { value: '+92%', label: 'Incremento de productividad' },
       { value: '650', label: 'Vendedores activados' },
-      { value: '72%', label: 'Retención promedio de contenido' },
+      { value: '72%', label: 'Tasa de respuesta promedio' },
     ],
     tags: ['Fuerza de ventas', '24 marcas', 'Plataforma'],
   },
