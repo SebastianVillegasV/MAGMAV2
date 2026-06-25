@@ -30,8 +30,11 @@ export default function ServicesSlider({ services }: { services: Service[] }) {
   }
 
   return (
-    <section className="section" style={{ background: 'var(--magma-mid)' }}>
-      <div className="container-magma">
+    <section className="section" style={{ background: 'var(--magma-mid)', position: 'relative', overflow: 'hidden' }}>
+      {/* Soft glows behind the frame so the frosted glass reads */}
+      <div style={{ position: 'absolute', top: '18%', left: '8%', width: '38%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(202,17,17,0.07) 0%, transparent 65%)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '8%', right: '10%', width: '34%', aspectRatio: '1', background: 'radial-gradient(circle, rgba(206,141,37,0.06) 0%, transparent 65%)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+      <div className="container-magma" style={{ position: 'relative', zIndex: 1 }}>
         {/* Tabs — all three palancas always visible */}
         <div className="services-tabs">
           {services.map((s, i) => (
