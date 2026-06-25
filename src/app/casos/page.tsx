@@ -4,71 +4,45 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Casos de Éxito',
   description:
-    'Resultados reales de equipos comerciales que transformaron su capacidad con Magma. Casos B2B de sectores tecnología, inmobiliario y retail.',
+    'Resultados reales de equipos comerciales que transformaron su capacidad con Magma. Casos como Legado (Dislicores) y Sunshine (Associated Brands).',
 }
 
 const cases = [
   {
     id: '01',
-    client: 'Empresa Tecnología SaaS',
-    sector: 'SaaS B2B',
+    program: 'Legado',
+    client: 'Dislicores',
+    sector: 'Distribución de licores',
     challenge:
-      'El equipo de ventas no podía explicar la propuesta de valor técnica en llamadas de discovery. Alta tasa de abandono antes de la demo.',
+      'Una fuerza de ventas de 650 personas, distribuida en 8 regionales y más de 25 ciudades, con 5 roles y 5 canales de venta, debía dominar el portafolio de 24 marcas — sin frenar la operación ni depender de capacitaciones presenciales.',
     solution:
-      'Produjo 6 fórmulas de posicionamiento: cómo abrir una llamada de discovery, cómo manejar objeciones técnicas y cómo conectar el producto con el dolor del cliente.',
+      'Construimos "Legado": 114 fórmulas en video (128 minutos de contenido) sobre una plataforma con rutas de aprendizaje por rol, pensadas para consumirse en 3 minutos al día, en el flujo de trabajo.',
     results: [
-      { value: '+38%', label: 'Tasa de conversión a demo' },
-      { value: '−22%', label: 'Tiempo de ciclo de venta' },
-      { value: '4 sem', label: 'De diagnóstico a impacto' },
+      { value: '+92%', label: 'Incremento de productividad' },
+      { value: '650', label: 'Vendedores activados' },
+      { value: '72%', label: 'Retención promedio de contenido' },
     ],
-    tags: ['Discovery', 'Demo conversion', 'Objeciones técnicas'],
+    tags: ['Fuerza de ventas', '24 marcas', 'Plataforma'],
   },
   {
     id: '02',
-    client: 'Constructora Residencial',
-    sector: 'Real Estate',
+    program: 'Sunshine',
+    client: 'Associated Brands',
+    sector: 'Cereales · consumo masivo',
     challenge:
-      'Vendedores con alta rotación y conocimiento desigual del portafolio. Cada sala de ventas funcionaba diferente.',
+      'La formación llegaba a una sola persona por país, con poco entendimiento real, en un calendario anual y sin forma de monitorear el impacto ni el engagement del equipo.',
     solution:
-      'Fórmulas de producto por proyecto, manejo de objeciones de precio y guías de proceso estandarizadas, accesibles desde móvil para los asesores en sala.',
+      'Lanzamos "Sunshine": aprendizaje móvil claro, corto y asertivo, en píldoras de 1 a 2 minutos semanales, con presencia permanente de marca en una sola plataforma medible.',
     results: [
-      { value: '+51%', label: 'Consistencia del proceso en salas' },
-      { value: '3×', label: 'Velocidad de onboarding de asesores' },
-      { value: '92%', label: 'Adopción de plataforma primer mes' },
+      { value: '+350', label: 'Personas alcanzadas en distribuidores' },
+      { value: '78%', label: 'Participación' },
+      { value: '360', label: 'Personas impactadas' },
     ],
-    tags: ['Onboarding', 'Estandarización', 'Móvil-first'],
-  },
-  {
-    id: '03',
-    client: 'Distribuidora Retail B2B',
-    sector: 'Retail / Distribución',
-    challenge:
-      'Fuerza de ventas de campo sin acceso constante a capacitación. El catálogo cambiaba cada trimestre y los vendedores no estaban al día.',
-    solution:
-      'Catálogo interactivo en fórmulas de video por categoría, con actualizaciones trimestrales y ruta de aprendizaje diferenciada por canal (supermercados vs. tiendas independientes).',
-    results: [
-      { value: '+29%', label: 'Ventas en categorías nuevas' },
-      { value: '−40%', label: 'Tiempo en capacitación presencial' },
-      { value: '100%', label: 'Cobertura de fuerza de campo' },
-    ],
-    tags: ['Campo', 'Catálogo', 'Actualización continua'],
+    tags: ['Aprendizaje móvil', 'Multi-distribuidor', 'Consumo masivo'],
   },
 ]
 
-const testimonials = [
-  {
-    quote:
-      'Antes de Magma, capacitar a un vendedor nuevo tomaba 6 semanas. Ahora en 2 semanas ya está listo para atender clientes.',
-    name: 'Director Comercial',
-    company: 'Empresa Tecnología SaaS',
-  },
-  {
-    quote:
-      'Lo que más valoramos es que el contenido no envejece: se actualiza y el equipo lo consume sin necesidad de reuniones.',
-    name: 'Gerente de Ventas',
-    company: 'Constructora Residencial',
-  },
-]
+const testimonials: { quote: string; name: string; company: string }[] = []
 
 export default function CasosPage() {
   return (
@@ -163,6 +137,18 @@ export default function CasosPage() {
               >
                 {/* Left: narrative */}
                 <div>
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      color: 'var(--magma-red)',
+                      marginBottom: 10,
+                    }}
+                  >
+                    Programa {c.program}
+                  </p>
                   <h2
                     style={{
                       fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
@@ -267,6 +253,7 @@ export default function CasosPage() {
       ))}
 
       {/* ── TESTIMONIALS ────────────────────── */}
+      {testimonials.length > 0 && (
       <section
         className="section"
         style={{ background: 'var(--magma-mid)', borderBottom: '1px solid var(--stroke)' }}
@@ -324,6 +311,7 @@ export default function CasosPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ── CTA ─────────────────────────────── */}
       <section className="section" style={{ background: 'var(--magma-black)', textAlign: 'center' }}>
